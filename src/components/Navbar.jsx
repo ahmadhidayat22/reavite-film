@@ -13,9 +13,9 @@ import { Bars3Icon,  XMarkIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 
 const navigation = [
-  { name: 'Home', href: '#', current: true },
+  { name: 'Home', href: '/', current: true },
+  { name: 'Popular', href: '#popular', current: false },
   { name: 'Upcoming', href: '#', current: false },
-  { name: 'Popular', href: '#', current: false },
   { name: 'Tv Series', href: '#', current: false },
 ]
 
@@ -33,7 +33,7 @@ export default function MyNav() {
   };
 
   return (
-    <Disclosure as="nav" className="bg-gray-800 fixed w-full">
+    <Disclosure as="nav" className="bg-gray-800 fixed w-full z-10">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
