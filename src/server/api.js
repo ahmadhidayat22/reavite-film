@@ -28,8 +28,9 @@ const tmdbApi = {
 
     },
     getVideos: async(cat,id) => {
-        const url = apiConfig.baseUrl + '/'+ category[cat] +'/' + id + '?videos' + '&api_key=' + apiConfig.APIKEY;
+        const url = apiConfig.baseUrl + '/'+ category[cat] +'/' + id + '/videos' + '?api_key=' + apiConfig.APIKEY;
         const video = await axios.get(url)
+        // console.log(video);
         return video.data.results
     }
 

@@ -2,7 +2,9 @@ import { useState ,useEffect ,useRef } from "react";
 import {ChevronLeft , ChevronRight} from "react-feather";
 import { Carousel, Typography, Button } from "@material-tailwind/react";
 import { star , half_star, play_button } from "../assets";
- 
+import MyModal , { ModalContent } from "./Modal"; 
+import tmdbApi, { category, movieType ,tvType } from '../server/api';
+
 // eslint-disable-next-line react/prop-types
 // const Carousel = ({children : slides}) => {
 //     const [curr, setCurr] = useState(0);
@@ -35,7 +37,7 @@ import { star , half_star, play_button } from "../assets";
 const HeroSlideItem = props => {    
     // console.log(props);
     const item = props.movie;
-    console.log(item);
+    // console.log(item);
 
     let rating = item.vote_average;
     const remainingStars = rating % 1 ? true: false;
@@ -69,6 +71,34 @@ const HeroSlideItem = props => {
         )
     }
 
+    const setModalActive = async() => {
+        // console.log(item.id);
+        const modal = document.querySelector(`#modal_${item.id}`);
+
+        const videos = await tmdbApi.getVideos( category.movie, item.id);
+        let key = 0;
+        videos.map((item) => {
+            if(item.type == "Trailer"){
+                key = item.key
+                console.log(key);
+            }
+            // console.log(item.type);
+        })
+        
+        if (key != 0){
+            const videoSrc = 'https://www.youtube.com/embed/' + key;
+            modal.querySelector('iframe').setAttribute('src', videoSrc);
+            modal.querySelector('iframe').setAttribute('autoplay', true);
+
+        }else{
+            console.log("tidak ada videos");
+        }
+        modal.classList.add('fixed');
+        modal.classList.remove('hidden');
+
+        // console.log(videos);
+    }   
+
    return (
         <div className="relative h-full w-full">
             <img
@@ -77,7 +107,7 @@ const HeroSlideItem = props => {
                 className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 flex h-full w-full   bg-gradient-to-r  from-black">
-                <div className="w-3/4 flex items-start flex-col gap-3 justify-center  mx-28 px-3  md:w-2/4">
+                <div className="w-3/4 flex items-start flex-col gap-3   justify-center  mx-28 lg:mx-20 px-3  md:w-2/4">
                     <Typography
                         variant="h1"
                         color="white"
@@ -111,16 +141,16 @@ const HeroSlideItem = props => {
                     </div>
 
                     <div className="mt-5">
-                        <Button size="lg" color="white">
-                        watch
+                        <Button size="lg" className="bg-red-500 text-white" onClick={setModalActive}>
+                        watch Trailer
                         </Button>
                         
                     </div>
                 </div>
-                <div className="flex  items-center ms-48">
+                <div className="flex items-center ms-48  lg:ms-28 ">
                     <button 
                         className="hover:-rotate-12 hover:scale-125 transition-transform duration-300 "
-                        onClick="{handleVideoClick}"
+                        onClick={setModalActive}
                     >
                     <img 
                         src={play_button} 
@@ -132,16 +162,18 @@ const HeroSlideItem = props => {
                     
             </div>  
             </div>
-               
+              
         </div>
      
    )
  
 }
 const Carousels = (props) => {
+    
 	const movie = props.movies;
 
 	return (
+        <>
 		<Carousel
             className="rounded-xl"
             autoplay= {false}
@@ -151,12 +183,35 @@ const Carousels = (props) => {
         >
 			{movie.map((item, i) => (
 				<HeroSlideItem movie={item} key={i} />
+
 			))}
 		</Carousel>
+        
+            {
+                movie.map((item, i) => <TrailerModal item={item} key={i}/>  )
+            }
+        
+        </>
 	);
 };
 
 
+const TrailerModal= props => {
+    // console.log("c",props.item.id);
+    const iframe = useRef(null);
+
+    // const videoUrl = 'https://www.youtube.com/embed/LEjhY15eCx0'
+
+
+    return(
+        <MyModal active={false} id={`modal_${props.item.id}`} >
+            <ModalContent >
+                <iframe ref={iframe} className="w-full rounded-lg h-[500px]" ></iframe>
+            </ModalContent>
+        </MyModal> 
+    )
+
+}
 
 {/* <div className="absolute inset-0 -z-10">
                 <img
