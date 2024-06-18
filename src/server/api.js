@@ -9,7 +9,8 @@ export const category = {
 export const movieType = {
     upcoming: 'upcoming',
     popular: 'popular',
-    top_rated: 'top_rated'
+    top_rated: 'top_rated',
+    now_playing: 'now_playing'
 }
 
 export const tvType = {
@@ -21,28 +22,34 @@ export const tvType = {
 const tmdbApi = {
     getMoviesList: async(type) => {
         
-        const url = apiConfig.baseUrl + '/movie/' + movieType[type] + '?page=1' + '&api_key=' + apiConfig.APIKEY;
+        const url = apiConfig.baseUrl + '/movie/' + movieType[type] + '?page=2' + '&api_key=' + apiConfig.APIKEY;
         const movie = await axios.get(url)
         return movie.data.results;
 
+    },
+    getVideos: async(cat,id) => {
+        const url = apiConfig.baseUrl + '/'+ category[cat] +'/' + id + '?videos' + '&api_key=' + apiConfig.APIKEY;
+        const video = await axios.get(url)
+        return video.data.results
     }
+
 }
 export default tmdbApi;
 
 
-export const getMovieList = async() =>{
-    try {
-        const movie = await axios.get(`${apiConfig.baseUrl}/movie/popular?page=1&api_key=${apiConfig.APIKEY}`);
+// export const getMovieList = async() =>{
+//     try {
+//         const movie = await axios.get(`${apiConfig.baseUrl}/movie/popular?page=1&api_key=${apiConfig.APIKEY}`);
         
-        // console.log({ movieList : movie })
-        return movie.data.results
-    } catch (error) {
-        console.log("error : " + error);
-    }
+//         // console.log({ movieList : movie })
+//         return movie.data.results
+//     } catch (error) {
+//         console.log("error : " + error);
+//     }
 
-}
+// }
 
-export const searchMovie = async(q) =>{
-    const search =await axios.get(`${import.meta.env.VITE_REACT_APP_BASEURL}/search/movie?query=${q}&page=1&api_key=${import.meta.env.VITE_REACT_APP_APIKEY}`)
-    return search.data
-}
+// export const searchMovie = async(q) =>{
+//     const search =await axios.get(`${import.meta.env.VITE_REACT_APP_BASEURL}/search/movie?query=${q}&page=1&api_key=${import.meta.env.VITE_REACT_APP_APIKEY}`)
+//     return search.data
+// }

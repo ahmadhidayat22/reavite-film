@@ -19,12 +19,12 @@ const Hero = ({movies}) => {
 	};
     const [popularMovies, setPopularMovies] = useState([])
     
-    // useEffect(() => {
-    //         tmdbApi.getMoviesList(movieType.popular).then((res) => {
-    //                   setPopularMovies(res);
-    //         })
+    useEffect(() => {
+            tmdbApi.getMoviesList(movieType.popular).then((res) => {
+                      setPopularMovies(res);
+            })
             
-    // }, [])
+    }, [])
 
     // console.log(popularMovies);
 
@@ -82,7 +82,7 @@ const Hero = ({movies}) => {
     ]
 
 	return (
-		 
+ 
         // <div className='w-full relative flex h-screen  justify-start  border-box '>
         //     <div className="absolute inset-0 -z-10">
         //         <img
@@ -132,22 +132,25 @@ const Hero = ({movies}) => {
                 
         //     </div>
         // </div>
-        <div className="w-full">
-            <Carousel>
-                {slides.map((s) =>(
-                    <>
-                        <h1>aowjdiaj</h1>
-                        
-                        <img src={s} alt="" />
-                        
-                    </>
-                   
-                   
-                ))}
-            </Carousel>
-        </div>
+        
+        <Carousel movies={popularMovies}/>
+        
+                
+                
+
+
+        
 
     )
 };
 
 export default Hero;
+
+
+{/* {slides.map((s, i) =>(
+                
+                    <img src={s} alt="" key={i}/>
+                    
+                   
+                   
+                ))} */}
