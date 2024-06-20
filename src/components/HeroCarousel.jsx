@@ -52,7 +52,7 @@ const HeroSlideItem = props => {
         videos.map((item) => {
             if(item.type == "Trailer"){
                 key = item.key
-                console.log(key);
+                // console.log(key);
             }
             // console.log(item.type);
         })
@@ -64,7 +64,7 @@ const HeroSlideItem = props => {
         }else{
             // modal.querySelector('.modal_content').innerHTML= "no trailer";
             alert("tidak ada trailer")
-            console.log(modal);
+            // console.log(modal);
             console.log("tidak ada videos");
             return;
         }
@@ -101,7 +101,7 @@ const HeroSlideItem = props => {
     getGenres();
 
    return (
-        <div className="relative h-full w-full">
+        <div className="relative h-full w-full" key={item.id}>
             <img
                 src={`${import.meta.env.VITE_REACT_APP_HEROIMGURL}/${item.backdrop_path}`}
                 alt="image 1"

@@ -5,20 +5,33 @@ import {
     MovieList,
   
   } from '../components'
-  import { movieType } from '../server/api';
+import tmdbApi , { movieType, category } from '../server/api';
+import { useParams } from 'react-router';
+
+import React, { useEffect, useState } from 'react'
 
 const Movie = () => {
+    const { Category, id } = useParams();
+    const [movieDetail, setMovieDetail] = useState([]);
+
+    useEffect(() => {
+        tmdbApi.detail(Category,id).then((res) => {
+          setMovieDetail(res);
+        })
+
+    }, [Category,id])
+// console.log(movieDetail);
     return(
     <div className=''>
       <div className=''>
         <MyNav />
-        <HeroDetail />
+        <HeroDetail item={movieDetail} category={category[Category]} />
         
       </div>
 
       <section className='my-5 '>
         <TrailerDetail />
-        <MovieList type={movieType.popular} title="Similiar"/>
+        <MovieList type="similar" category={category[Category]} id={id} title="Similiar"/>
 
       </section>
 

@@ -2,6 +2,8 @@ import React, { useRef } from 'react'
 
 const TrailerDetail = () => {
 
+    
+
     const vframe = useRef(null);
     return (
         <div className=' mx-20 flex flex-col mb-96'>

@@ -14,7 +14,7 @@ import { useState, useRef, useEffect } from 'react'
 
 const navigation = [
   { name: 'Home', href: '/', current: null },
-  { name: 'Movies', href: '/movie', current: null },
+  { name: 'Movies', href: '#', current: null },
   { name: 'Tv Series', href: '/tv-series', current: null },
 ]
 
@@ -51,7 +51,7 @@ export default function MyNav() {
   window.addEventListener('scroll', handleScroll);
 
   return (
-    <Disclosure as="nav"  className={`${navbarVisible ? 'translate-y-0 ' : '-translate-y-14'} transition-all duration-150  bg-transparent fixed w-full z-10`}>
+    <Disclosure as="nav"  className={`${navbarVisible ? 'translate-y-[1vh] ' : '-translate-y-14'} transition-all duration-150  bg-transparent fixed w-full z-10`}>
       {({ open }) => (
         <>
           <div className="mx-auto max-w-full px-2 sm:px-6 lg:px-8 ">

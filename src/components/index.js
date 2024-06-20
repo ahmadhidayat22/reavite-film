@@ -7,7 +7,6 @@ import TrailerDetail from "./TrailerDetail";
 
 
 
-
 export { 
     MyNav,
     Hero,

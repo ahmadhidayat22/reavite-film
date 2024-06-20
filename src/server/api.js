@@ -33,18 +33,29 @@ const tmdbApi = {
         // console.log(video);
         return video.data.results
     },
-    credit: async() => {
-        const url = apiConfig.baseUrl + '/'+ category[cat] +'/' + id + '/credits' + '?api_key=' + apiConfig.APIKEY;
+    credit: async(cat,id) => {
+        // console.log(cat,id);
+        const url = apiConfig.baseUrl + '/' + category[cat] + '/' + id + '/credits' + '?api_key=' + apiConfig.APIKEY;
         const credits = await axios.get(url)
-        return credits.data.results
+        // console.log(credits.data);
+        return credits.data
 
     },
-    similiar: async() => {
-        const url = apiConfig.baseUrl + '/'+ category[cat] +'/' + id + '/similiar' + '?api_key=' + apiConfig.APIKEY + '&page=1';
+    similiar: async(cat,id) => {
+     
+        const url = apiConfig.baseUrl + '/'+ category[cat] +'/' + id + '/similar' + '?api_key=' + apiConfig.APIKEY ;
         const similiar = await axios.get(url)
         return similiar.data.results
 
     },
+    detail : async(cat, id) => {
+        const url = apiConfig.baseUrl + '/'+ category[cat] +'/' + id + '?append_to_response=videos' + '&api_key=' + apiConfig.APIKEY ;
+        const detail = await axios.get(url);
+        
+        return detail.data
+
+    },
+
 
 }
 export default tmdbApi;
