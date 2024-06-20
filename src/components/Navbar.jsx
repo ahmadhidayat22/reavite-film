@@ -10,15 +10,13 @@ import {
   // Transition,
 } from '@headlessui/react'
 import { Bars3Icon,  XMarkIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Popular', href: '#popular', current: false },
-  { name: 'Upcoming', href: '#', current: false },
-  { name: 'Tv Series', href: '#', current: false },
+  { name: 'Home', href: '/', current: null },
+  { name: 'Movies', href: '/movie', current: null },
+  { name: 'Tv Series', href: '/tv-series', current: null },
 ]
-
 
 
 function classNames(...classes) {
@@ -26,17 +24,37 @@ function classNames(...classes) {
 }
 
 export default function MyNav() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  
+  const [activeIndex, setActiveIndex] = useState(null);
 
-  const handleNavClick = (index) => {
-    setActiveIndex(index); // Update state dengan indeks elemen yang diklik
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    const index = navigation.findIndex(item => item.href === currentPath);
+    setActiveIndex(index);
+  }, []);
+
+  const handleNavClick = (item, index) => {
+    setActiveIndex(index);
   };
 
+	const [navbarVisible, setNavbarVisible] = useState(true);
+  
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 0) {
+        setNavbarVisible(false);
+      } else {
+        setNavbarVisible(true);
+      }
+    };
+  
+  window.addEventListener('scroll', handleScroll);
+
   return (
-    <Disclosure as="nav" className="bg-gray-800 fixed w-full z-10">
+    <Disclosure as="nav"  className={`${navbarVisible ? 'translate-y-0 ' : '-translate-y-14'} transition-all duration-150  bg-transparent fixed w-full z-10`}>
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
+          <div className="mx-auto max-w-full px-2 sm:px-6 lg:px-8 ">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -50,13 +68,13 @@ export default function MyNav() {
                   )}
                 </DisclosureButton>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
+              <div className="flex flex-1 items-center  sm:items-stretch xl:justify-between sm:justify-start">
+                <div className="flex items-center">
+                  <a href="/">
+
+                    <h1 className='uppercase font-mono font-bold text-4xl'>kuymovie</h1>
+                  </a>
+
                 </div>
                 <div className="hidden sm:ml-6 sm:block ">
                   <div className="flex space-x-4 ">
@@ -65,11 +83,11 @@ export default function MyNav() {
                         key={index}
                         href={item.href}
                         className={classNames(
-                          index === activeIndex ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
+                          index === activeIndex ? ' text-red-500 border-b-4 border-red-500' : 'text-white hover:border-b-4 hover:text-white',
+                          ' px-3 py-1 text-md font-semibold '
                         )}
-                        aria-current={item.current ? 'page' : undefined}
-                        onClick={() => handleNavClick(index)}
+                        aria-current={index === activeIndex ? 'page' : undefined}
+                        onClick={() => handleNavClick(item, index)}
                       >
                         {item.name}
                       </a>
@@ -92,8 +110,8 @@ export default function MyNav() {
                     index === activeIndex ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
-                  aria-current={item.current ? 'page' : undefined}
-                  onClick={() => handleNavClick(index)}
+                  aria-current={index === activeIndex ? 'page' : undefined}
+                  onClick={() => handleNavClick(item, index)}
                 >
                   {item.name}
                 </DisclosureButton>

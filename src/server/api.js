@@ -22,7 +22,7 @@ export const tvType = {
 const tmdbApi = {
     getMoviesList: async(type) => {
         
-        const url = apiConfig.baseUrl + '/movie/' + movieType[type] + '?page=2' + '&api_key=' + apiConfig.APIKEY;
+        const url = apiConfig.baseUrl + '/movie/' + movieType[type] + '?page=1' + '&api_key=' + apiConfig.APIKEY;
         const movie = await axios.get(url)
         return movie.data.results;
 
@@ -32,7 +32,19 @@ const tmdbApi = {
         const video = await axios.get(url)
         // console.log(video);
         return video.data.results
-    }
+    },
+    credit: async() => {
+        const url = apiConfig.baseUrl + '/'+ category[cat] +'/' + id + '/credits' + '?api_key=' + apiConfig.APIKEY;
+        const credits = await axios.get(url)
+        return credits.data.results
+
+    },
+    similiar: async() => {
+        const url = apiConfig.baseUrl + '/'+ category[cat] +'/' + id + '/similiar' + '?api_key=' + apiConfig.APIKEY + '&page=1';
+        const similiar = await axios.get(url)
+        return similiar.data.results
+
+    },
 
 }
 export default tmdbApi;

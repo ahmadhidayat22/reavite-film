@@ -1,30 +1,23 @@
 // import { useState } from 'react'
+import { BrowserRouter as Router , Routes , Route} from 'react-router-dom'
 
 import './App.css'
-import {
-  MyNav,
-  Hero,
-  Popular,
 
-} from './components'
 import { useState , useEffect } from "react";
-// import tmdbApi, { category, movieType ,tvType } from './server/api';
+
+import { Home, Movie, TvSeries } from './pages';
+
 
 function App() {
 
   return (
-    <div className=''>
-      <div className=''>
-        <MyNav />
-        <Hero  />
-        
-      </div>
-      <section className='w-full my-5 '>
-        <Popular />
-      </section>      
-     
-    </div>
-
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='/movie' element={<Movie />}/>
+        <Route path='/tv-series' element={<TvSeries />}/>
+      </Routes>
+    </Router>
     
   )
 }
