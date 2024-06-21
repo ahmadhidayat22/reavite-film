@@ -25,7 +25,20 @@ export default withMT({
         
       },
 
+
     },
+     // that is animation class
+     animation: {
+      fade: 'fadeOut 1s ease-in-out',
+    },
+
+    // that is actual animation
+    keyframes: theme => ({
+      fadeOut: {
+        '0%': { transform: 'translateY(-5rem)', opacity : '0'},
+        '100%': { opacity: '1' },
+      },
+    }),
 
   },
   plugins: [],

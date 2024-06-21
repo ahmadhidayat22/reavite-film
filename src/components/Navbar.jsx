@@ -12,6 +12,7 @@ import {
 import { Bars3Icon,  XMarkIcon } from '@heroicons/react/24/outline'
 import { useState, useRef, useEffect } from 'react'
 
+
 const navigation = [
   { name: 'Home', href: '/', current: null },
   { name: 'Movies', href: '/catalog/movie/popular', current: null },
@@ -50,7 +51,9 @@ export default function MyNav() {
       setPrevScrollpos(scrollPosition)
     };
   
-  window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll);
+  
 
   return (
     <Disclosure as="nav"  className={`${navbarVisible ? 'translate-y-[1vh] ' : '-translate-y-14'} transition-all duration-150  bg-transparent fixed w-full z-10`}>

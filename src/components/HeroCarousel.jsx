@@ -101,6 +101,8 @@ const HeroSlideItem = props => {
 
     getGenres();
 
+
+
    return (
         <div className="relative h-full w-full" key={item.id}>
             <img
@@ -109,11 +111,11 @@ const HeroSlideItem = props => {
                 className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 flex h-full w-full  bg-gradient-to-r  from-black">
-                <div className="w-3/4 flex items-start flex-col gap-3  justify-center  mx-28 lg:mx-20 px-3  md:w-2/4">
+                <div className="w-3/4 flex items-start flex-col animate-fade gap-3  justify-center  mx-28 lg:mx-20 px-3  md:w-2/4">
                     <Typography
                         variant="h1"
                         color="white"
-                        className="mb-4 font-[inherit] text-3xl md:text-4xl lg:text-7xl"
+                        className="mb-4 font-[inherit]  text-3xl  md:text-4xl lg:text-7xl"
                     >
                         {item.title}
                     
