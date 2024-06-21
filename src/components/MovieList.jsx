@@ -18,6 +18,7 @@ const MovieList = (props) => {
                 switch(props.category){
                     case category.movie:
                         response = await tmdbApi.getMoviesList(type)
+                        
                         break;
                     
                     default:
@@ -29,8 +30,9 @@ const MovieList = (props) => {
                 response = await tmdbApi.similiar(category[props.category] , props.id)
                    
             }
-            setMovies(response)
-            // console.log(response);
+
+            setMovies(response.results)
+            // console.log(response.results);
         }
         
         getList();
@@ -57,7 +59,7 @@ const MovieList = (props) => {
                         
                         <div className="w-44 h-0  *:translate-y-5 *:group-hover:translate-y-0 *:opacity-0 *:group-hover:opacity-100 *:duration-300  group-hover:h-32 px-3 py-1 group-hover:bg-gradient-to-t  group-hover:from-black  text-white items-center flex gap-2 absolute bottom-0 rounded-b-lg ">
                             
-                            <div className="w-40 text-wrap">
+                            <div className="w-40 text-xl text-wrap">
                                 <h3 className="font-bold ">{ shortTitle }</h3>
 
                             </div>
@@ -85,7 +87,7 @@ const MovieList = (props) => {
 
                 <h1 className="flex py-5  md:mx-15 mx-5 font-bold text-4xl text-white">{props.title}</h1>
                 <div className=" mx-3 flex items-end px-2 ">
-                    <a href="#" className="text-red-400"> Show more </a>
+                    <a href={`/catalog/${category[props.category]}/${type}`} className="text-red-400"> Show more </a>
                 </div>
             </div>
 

@@ -15,14 +15,14 @@ const Cast = (props) => {
 			});
 		}
 	}, [props.id]);
-	console.log(casts);
+	// console.log(casts);
 
 	return (
 		<>
 			{casts.map((item, i) => {
                 const picture = 'https://image.tmdb.org/t/p/w500/' + item.profile_path;
                 return(
-				<div className="w-28 text-center">
+				<div className="w-28 text-center" key={i}>
 					<img src={picture} alt="cast" className="w-full rounded" />
 					<p>{item.name}</p>
 				</div>

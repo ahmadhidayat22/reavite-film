@@ -14,8 +14,8 @@ import { useState, useRef, useEffect } from 'react'
 
 const navigation = [
   { name: 'Home', href: '/', current: null },
-  { name: 'Movies', href: '#', current: null },
-  { name: 'Tv Series', href: '/tv-series', current: null },
+  { name: 'Movies', href: '/catalog/movie/popular', current: null },
+  { name: 'Tv Series', href: '/catalog/tv/popular', current: null },
 ]
 
 
@@ -36,16 +36,18 @@ export default function MyNav() {
   const handleNavClick = (item, index) => {
     setActiveIndex(index);
   };
-
+  const [prevScrollpos, setPrevScrollpos] = useState(window.scrollY);
 	const [navbarVisible, setNavbarVisible] = useState(true);
   
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      if (scrollPosition > 0) {
-        setNavbarVisible(false);
-      } else {
+      if (prevScrollpos > scrollPosition) {
         setNavbarVisible(true);
+      } else {
+        setNavbarVisible(false);
       }
+
+      setPrevScrollpos(scrollPosition)
     };
   
   window.addEventListener('scroll', handleScroll);
@@ -72,7 +74,7 @@ export default function MyNav() {
                 <div className="flex items-center">
                   <a href="/">
 
-                    <h1 className='uppercase font-mono font-bold text-4xl'>kuymovie</h1>
+                    <h1 className='uppercase text-red-500  font-bold text-6xl'>kuymovie</h1>
                   </a>
 
                 </div>
@@ -84,7 +86,7 @@ export default function MyNav() {
                         href={item.href}
                         className={classNames(
                           index === activeIndex ? ' text-red-500 border-b-4 border-red-500' : 'text-white hover:border-b-4 hover:text-white',
-                          ' px-3 py-1 text-md font-semibold '
+                          ' px-3 py-1 text-xl font-semibold  '
                         )}
                         aria-current={index === activeIndex ? 'page' : undefined}
                         onClick={() => handleNavClick(item, index)}

@@ -1,12 +1,23 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+/* <uniquifier>: Use a unique and descriptive class name */
+ /* <weight>: Use a value from 300 to 800 */
+
+/* .merriweather-sans-<uniquifier> {
+  font-family: "Merriweather Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+} */
 
 
 *{
   margin: 0;
   padding: 0;
   color: white;
+  font-family: 'h Harga', sans-serif;
+                                                
 }
 :root{
   background-color: black;

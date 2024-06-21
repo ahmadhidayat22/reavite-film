@@ -5,7 +5,7 @@ import { star , half_star, play_button } from "../assets";
 import MyModal , { ModalContent } from "./Modal"; 
 import tmdbApi, { category, movieType ,tvType } from '../server/api';
 
-import { genres, genres2 } from "../constant";
+import { genres } from "../constant";
 
 const HeroSlideItem = props => {    
     const item = props.movie;
@@ -47,7 +47,8 @@ const HeroSlideItem = props => {
         // console.log(item.id);
         const modal = document.querySelector(`#modal_${item.id}`);
 
-        const videos = await tmdbApi.getVideos( category.movie, item.id);
+        let videos = await tmdbApi.getVideos( category.movie, item.id);
+        videos = videos.results
         let key = 0;
         videos.map((item) => {
             if(item.type == "Trailer"){
@@ -58,7 +59,7 @@ const HeroSlideItem = props => {
         })
         
         if (key != 0){
-            const videoSrc = 'https://www.youtube.com/embed/' + key;
+            const videoSrc = `https://www.youtube.com/embed/${key}?autoplay=1&mute=0` ;
             modal.querySelector('iframe').setAttribute('src', videoSrc);
 
         }else{
@@ -108,28 +109,29 @@ const HeroSlideItem = props => {
                 className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 flex h-full w-full  bg-gradient-to-r  from-black">
-                <div className="w-3/4 flex items-start flex-col gap-3   justify-center  mx-28 lg:mx-20 px-3  md:w-2/4">
+                <div className="w-3/4 flex items-start flex-col gap-3  justify-center  mx-28 lg:mx-20 px-3  md:w-2/4">
                     <Typography
                         variant="h1"
                         color="white"
-                        className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+                        className="mb-4 font-[inherit] text-3xl md:text-4xl lg:text-7xl"
                     >
                         {item.title}
                     
 
                     </Typography>
-                    <div className="flex justify-start items-center gap-1">
+                    <div className="flex  justify-start items-center gap-1">
                      {starItem}
                      <span>
-                        <p className="text-white ms-3">{(Math.round(rating * 10) / 10)}</p>
+                        <p className="text-white font-body ms-3">{(Math.round(rating * 10) / 10)}</p>
                      </span>
                      <span className="text-white font-medium py-1 px-2 ms-2 rounded-md bg-yellow-800 ">
-                         <p>Rating</p>
+                         <p className="font-body ">Rating</p>
                      </span>    
                     </div>
                     <Typography
                         variant="lead"
                         color="white"
+
                         className=" opacity-80"
                     >
                        {item.overview}
@@ -140,20 +142,20 @@ const HeroSlideItem = props => {
                         <div className="flex items-center gap-2 mt-5">
                             
                             {
-                                genreName.map((i) => {
+                                genreName.map((i,q) => {
                                     return(
-                                        <span className="border py-1 px-2 rounded-xl ">{i}</span>
+                                        <span className="border font-body py-1 px-2 rounded-xl " key={q}>{i}</span>
 
                                     )
                                 })
                             }
                         </div>
-                        <p className="font-mono text-lg text-white  mt-3"><span className="text-green-400">Released date</span> {item.release_date} </p>
+                        <p className="text-xl text-white  mt-3"><span className="text-green-400">Released date</span> {item.release_date} </p>
 
                     </div>
 
                     <div className="mt-5">
-                        <Button size="lg" className="bg-red-500 text-white" onClick={setModalActive}>
+                        <Button size="md" className="bg-red-500 font-[inherit] text-xl text-white" onClick={setModalActive}>
                         watch Trailer
                         </Button>
                         
@@ -219,7 +221,11 @@ const TrailerModal= props => {
     return(
         <MyModal active={false} id={`modal_${props.item.id}`} >
             <ModalContent onClose={onClose} >
-                <iframe ref={iframe} className="w-full rounded-lg xl:h-[80vh] lg:h-[500px]" ></iframe>
+                <iframe
+                    ref={iframe}
+                    className="w-full rounded-lg xl:h-[80vh] lg:h-[500px]"
+                    allow="autoplay"
+                 ></iframe>
             </ModalContent>
         </MyModal> 
     )

@@ -11,7 +11,7 @@ const Hero = ({movies}) => {
     
     useEffect(() => {
             tmdbApi.getMoviesList(movieType.popular).then((res) => {
-                      setPopularMovies(res);
+                      setPopularMovies(res.results);
             })
             
     }, [])

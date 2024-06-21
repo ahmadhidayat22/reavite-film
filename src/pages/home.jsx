@@ -17,10 +17,10 @@ const Home = () => {
         
       </div>
       <section className='w-full my-5 '>
-        <MovieList type={movieType.popular} category={category.movie} title="Now Playing"/>
-        {/* <MovieList type={movieType.popular} title="Popular"/>
-        <MovieList type={movieType.upcoming} title="Upcoming"/>
-        <MovieList type={movieType.top_rated} title="Top Rated"/> */}
+        <MovieList type={movieType.now_playing} category={category.movie} title="Now Playing"/>
+        <MovieList type={movieType.popular} category={category.movie} title="Popular"/>
+        <MovieList type={movieType.upcoming} category={category.movie} title="Upcoming"/>
+        {/* <MovieList type={movieType.top_rated} title="Top Rated"/> */}
       </section>      
      
     </div>
