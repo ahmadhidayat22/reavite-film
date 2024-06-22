@@ -7,6 +7,6 @@
 		},
 		{ "source": "/:Category/:id", "destination": "/:Category/:id" },
 		{ "source": "/tv-series", "destination": "/tv-series" },
-		{ "source": "/(.*)", "destination": "/404" }
+		{ "source": "/(.*)", "destination": "index.html" }
 	]
 }
