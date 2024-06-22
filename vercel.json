@@ -1,12 +1,5 @@
 {
 	"rewrites": [
-		{ "source": "/", "destination": "/" },
-		{
-			"source": "/catalog/:category/:type",
-			"destination": "/catalog/:category/:type"
-		},
-		{ "source": "/:Category/:id", "destination": "/:Category/:id" },
-		{ "source": "/tv-series", "destination": "/tv-series" },
-		{ "source": "/(.*)", "destination": "index.html" }
+        { "source": "/(.*)", "destination": "index.html" }
 	]
 }
