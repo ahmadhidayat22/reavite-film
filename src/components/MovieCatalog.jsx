@@ -16,9 +16,8 @@ const MovieCatalog = (props) => {
 	const [totalPage, setTotalPage] = useState(0);
 	const [page, setPage] = useState(1);
 	const [loading, setLoading] = useState(false);
+	const [searchVal ,setSearchVal] = useState('');
 
-
-	console.log(Category,type);
 
 	useEffect(() => {
 		const getList = async () => {
@@ -83,14 +82,14 @@ const MovieCatalog = (props) => {
 			// console.log(pictur);
 			return (
 				<Link to={link} key={i}>
-					<div key={i} className=" flex w-44 rounded hover:scale-105 my-3 transition-all duration-300 h-64 flex-col">
+					<div key={i} className=" flex w-44 rounded  hover:scale-105 my-3 transition-all duration-300 h-64 flex-col">
 						{/* {loading ? (
-						<ImageSkeleton />
+						null
 					) : (
 						
-					)} */}
-						<div className=" flex rounded flex-col">
-							<div className="rounded-2xl h-full overflow-hidden bg-gray-400">
+						)} */}
+						<div className=" flex rounded flex-col h-full ">
+							<div className="rounded-2xl h-full  overflow-hidden bg-gray-400">
 								<img
 									src={`${import.meta.env.VITE_REACT_APP_BASEIMGURL}/${
 										item.poster_path
@@ -105,12 +104,13 @@ const MovieCatalog = (props) => {
 								<p>{item.title ? item.title : item.name}</p>
 							</div>
 						</div>
+
 					</div>
 				</Link>
 			);
 		});
 	};
-	console.log(totalPage);
+	// console.log(totalPage);
 
 	const wait = (x) => {
 		return new Promise((res) => {
@@ -121,14 +121,29 @@ const MovieCatalog = (props) => {
 	};
 
 	const loadMore = async () => {
+		
 		setLoading(true);
 		let response = null;
 		const params = {
 			page: page + 1,
 		};
-		response = await tmdbApi.getMoviesList(movieType.upcoming, params.page);
+		if (searchVal === '') {
+			// console.log(searchVal);
+			if (Category ==category.movie ) {
+				response = await tmdbApi.getMoviesList(movieType[type], params.page);
+				
+			}else{
+				response = await tmdbApi.getTvList(movieType[type], params.page);
 
-		// console.log('ok');
+			}
+
+		}else{
+			console.log(Category);
+			response = await tmdbApi.search(Category ,searchVal, params.page);
+
+		}
+
+		console.log(response);
 
 		setList([...list, ...response.results]);
 		await wait(1000);
@@ -158,9 +173,15 @@ const MovieCatalog = (props) => {
 		const searching = async () => {
 			let res = null;
 			if (getValue) {
-				console.log("ada");
-				res = await tmdbApi.search(getValue);
-				console.log(res);
+				res = await tmdbApi.search(Category,getValue);
+
+				if(res.results != ''){
+					
+					console.log("ada",res);
+				}else{
+					console.log("kosong pok", res);
+				}
+				setSearchVal(getValue);
 			}
 			setList(res.results);
 			// console.log(getValue);
@@ -175,6 +196,7 @@ const MovieCatalog = (props) => {
 					variant="outlined"
 					value={getValue}
 					onChange={onChange}
+					onKeyUp={(e) => {e.key === 'Enter' ? searching() : null }}
 					className="pr-20"
 					containerProps={{
 						className: "min-w-0 text-wrap",

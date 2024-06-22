@@ -60,7 +60,7 @@ export default function MyNav() {
       {({ open }) => (
         <>
           <div className="mx-auto max-w-full px-2 sm:px-6 lg:px-8 ">
-            <div className="relative flex h-16 items-center justify-between">
+            <div className="relative flex xl:h-16 lg:h-10 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -73,11 +73,11 @@ export default function MyNav() {
                   )}
                 </DisclosureButton>
               </div>
-              <div className="flex flex-1 items-center  sm:items-stretch xl:justify-between sm:justify-start">
+              <div className="flex flex-1 items-center  sm:items-stretch justify-between ">
                 <div className="flex items-center">
                   <a href="/">
 
-                    <h1 className='uppercase text-red-500  font-bold text-6xl'>kuymovie</h1>
+                    <h1 className='uppercase text-red-500  font-bold xl:text-6xl lg:text-3xl text-2xl '>kuymovie</h1>
                   </a>
 
                 </div>
@@ -89,7 +89,7 @@ export default function MyNav() {
                         href={item.href}
                         className={classNames(
                           index === activeIndex ? ' text-red-500 border-b-4 border-red-500' : 'text-white hover:border-b-4 hover:text-white',
-                          ' px-3 py-1 text-xl font-semibold  '
+                          ' px-3 py-1 xl:text-xl lg:text-base font-semibold  '
                         )}
                         aria-current={index === activeIndex ? 'page' : undefined}
                         onClick={() => handleNavClick(item, index)}
@@ -126,5 +126,8 @@ export default function MyNav() {
         </>
       )}
     </Disclosure>
+
+
+
   )
 }

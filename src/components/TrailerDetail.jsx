@@ -24,12 +24,13 @@ const TrailerDetail = (props) => {
             });
 
             if (key != 0) {
-                const videoSrc =`https://www.youtube.com/embed/${key}?autoplay=1`
+                const videoSrc =`https://www.youtube.com/embed/${key}?autoplay=0`
                 trailer.querySelector('iframe').setAttribute('src', videoSrc);
                 
             }
             else{
-                alert("tidak ada trailer")
+                // alert("tidak ada trailer")
+                trailer.classList.add('hidden')
 
             }
             // console.log(key);
@@ -48,10 +49,14 @@ const TrailerDetail = (props) => {
                 <h1>Trailer </h1>
 
             </div>
-            <div className='w-full h-[55rem] '>
+            <div id='trailer_body' className='w-full h-[55rem] '>
             <iframe ref={iframe} className='w-full h-full'
                     title='Youtube player'
-                    allow='same-origin fullscreen'
+                    allow='same-origin; fullscreen;encrypted-media;'
+                    mozallowfullscreen="mozallowfullscreen" 
+                    msallowfullscreen="msallowfullscreen" 
+                    oallowfullscreen="oallowfullscreen" 
+                    webkitallowfullscreen="webkitallowfullscreen"
                     sandbox='allow-same-origin allow-forms allow-popups  allow-scripts allow-presentation '
 
                     src=''>

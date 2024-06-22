@@ -43,7 +43,8 @@ const MovieList = (props) => {
     const Movie_list = () => {
         
         return Movies.map((movie, i) =>{
-            const title = movie.title;
+            const title = movie.title ? movie.title : movie.name;
+            // console.log(movie);
             const shortTitle = title ;
             const link = '/' + category[props.category]  + '/' + movie.id;
 
@@ -53,7 +54,7 @@ const MovieList = (props) => {
                 <Link to={link} key={i} reloadDocument={true}>
                     <div key={i}  className="group cursor-pointer hover:scale-110  transition-all relative overflow-hidden ease-in-out duration-300 mx-3">
                         <div className="w-44 h-64 max-w-xs overflow-hidden rounded-lg  bg-red-400  ease-in-out">
-                            <img src={`${import.meta.env.VITE_REACT_APP_BASEIMGURL}/${movie.poster_path}`} alt="" className="w-full"/>
+                            <img src={`${import.meta.env.VITE_REACT_APP_BASEIMGURL}/${movie.poster_path}`} alt="" className="w-full h-full"/>
                         </div>
                         
                         

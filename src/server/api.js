@@ -34,8 +34,16 @@ const tmdbApi = {
         return movie.data;
 
     },
-    getTvList: async(type) => {
-        const url = apiConfig.baseUrl + '/tv/' + tvType[type] + '?page=1' + '&api_key=' + apiConfig.APIKEY;
+    getTvList: async(type, page) => {
+        let url = ''
+        if (page === undefined) {
+            url = apiConfig.baseUrl + '/tv/' + tvType[type] + '?page=1' + '&api_key=' + apiConfig.APIKEY;
+            
+        }
+        else{
+            url = apiConfig.baseUrl + '/tv/' + tvType[type] + '?page=' +page + '&api_key=' + apiConfig.APIKEY;
+
+        }
         const tv = await axios.get(url);
         return tv.data;
     },
@@ -68,8 +76,16 @@ const tmdbApi = {
         return detail.data
 
     },
-    search :async (key) => {
-        const url = apiConfig.baseUrl + '/search/movie'+'?api_key=' + apiConfig.APIKEY + "&query=" + key ;
+    search :async (cat, key , page) => {
+        // console.log(cat,key,page);
+        let url = ''
+        if(page === undefined ){
+
+           url = apiConfig.baseUrl + '/search/'+ cat +'?api_key=' + apiConfig.APIKEY + "&query=" + key + '&page=1' ;
+        }else{
+            url = apiConfig.baseUrl + '/search/'+ cat+ '?api_key=' + apiConfig.APIKEY + "&query=" + key + '&page='+ page ;
+
+        }
         const search = await axios.get(url);
         return search.data
 
