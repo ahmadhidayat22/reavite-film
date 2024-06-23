@@ -1,7 +1,6 @@
 import {
   MyNav,
   Hero,
-  Popular,
   MovieList,
 
 } from '../components'
@@ -14,8 +13,8 @@ const Home = () => {
       <div className=''>
         <MyNav />
         <Hero  />
-        
       </div>
+        
       <section className='w-full my-5 '>
         <MovieList type={movieType.now_playing} category={category.movie} title="Now Playing"/>
         <MovieList type={movieType.popular} category={category.movie} title="Popular"/>

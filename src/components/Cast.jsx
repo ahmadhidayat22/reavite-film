@@ -24,7 +24,7 @@ const Cast = (props) => {
                 return(
 				<div className="w-28 text-center" key={i}>
 					<img src={picture} alt="cast" className="w-full rounded" />
-					<p>{item.name}</p>
+					<p className="text-xs mt-1 md:text-base ">{item.name}</p>
 				</div>
                 )
 

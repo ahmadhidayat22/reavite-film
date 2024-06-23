@@ -53,18 +53,21 @@ const MovieList = (props) => {
                 // eslint-disable-next-line react/jsx-key
                 <Link to={link} key={i} reloadDocument={true}>
                     <div key={i}  className="group cursor-pointer hover:scale-110  transition-all relative overflow-hidden ease-in-out duration-300 mx-3">
-                        <div className="w-44 h-64 max-w-xs overflow-hidden rounded-lg  bg-red-400  ease-in-out">
-                            <img src={`${import.meta.env.VITE_REACT_APP_BASEIMGURL}/${movie.poster_path}`} alt="" className="w-full h-full"/>
+                        <div className="w-32 h-44 md:w-44 md:h-64 max-w-xs overflow-hidden rounded-lg  bg-red-400  ease-in-out">
+                            <img
+                            src={`${import.meta.env.VITE_REACT_APP_BASEIMGURL}/${movie.poster_path}`} 
+                            alt=""
+                            className="w-full h-full"/>
                         </div>
                         
                         
-                        <div className="w-44 h-0  *:translate-y-5 *:group-hover:translate-y-0 *:opacity-0 *:group-hover:opacity-100 *:duration-300  group-hover:h-32 px-3 py-1 group-hover:bg-gradient-to-t  group-hover:from-black  text-white items-center flex gap-2 absolute bottom-0 rounded-b-lg ">
+                        <div className="w-full  *:translate-y-5 *:group-hover:translate-y-0 *:opacity-0 *:group-hover:opacity-100 *:duration-300 group-hover:h-24 md:group-hover:h-32 px-3 py-1 group-hover:bg-gradient-to-t  group-hover:from-black  text-white items-center flex gap-2 absolute bottom-0 rounded-b-lg ">
                             
-                            <div className="w-40 text-xl text-wrap">
+                            <div className="w-40 text-lg md:text-xl  text-wrap">
                                 <h3 className="font-bold ">{ shortTitle }</h3>
 
                             </div>
-                            <div className=" ">
+                            <div className="">
                                 <button>
                                     <img src={play_button_red} alt="" className="w-10" />
 
@@ -83,16 +86,16 @@ const MovieList = (props) => {
 
     return(
         
-        <div id="popular" className="flex flex-col m-auto p-auto my-10 mx-14">
-            <div className="flex justify-between">
+        <div id="popular" className="flex flex-col  m-auto p-auto my-10 mx-5 md:mx-16">
+            <div className="flex justify-between "> 
 
-                <h1 className="flex py-5  md:mx-15 mx-5 font-bold text-4xl text-white">{props.title}</h1>
-                <div className=" mx-3 flex items-end px-2 ">
+                <h1 className="flex py-3  md:mx-15 mx-5 font-bold text-xl  md:text-4xl text-white">{props.title}</h1>
+                <div className=" mx-3 flex items-end px-2  ">
                     <a href={`/catalog/${category[props.category]}/${type}`} className="text-red-400"> Show more </a>
                 </div>
             </div>
 
-        <div className="flex overflow-x-scroll pb-10 hide-scroll-bar " >
+        <div className="flex overflow-x-scroll  pb-5 md:pb-10 hide-scroll-bar " >
             
             <div className="flex flex-nowrap  py-5 ">
 

@@ -10,7 +10,7 @@ function Catalog() {
 		<div className="">
 			<div className="">
                 <MyNav />
-                <div className="container-xl h-[10vh]  mx-auto flex items-end justify-center">
+                <div className="container-xl h-[15vh] md:h-[20vh] mx-auto flex items-end justify-center">
                     <h1 className="text-4xl uppercase">{category}</h1>
                 </div>
             

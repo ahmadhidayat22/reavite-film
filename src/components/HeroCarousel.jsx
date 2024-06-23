@@ -51,7 +51,7 @@ const HeroSlideItem = (props) => {
 		});
 
 		if (key != 0) {
-			const videoSrc = `https://www.youtube.com/embed/${key}?autoplay=1&mute=0`;
+			const videoSrc = `https://www.youtube.com/embed/${key}?autoplay=1`;
 			modal.querySelector("iframe").setAttribute("src", videoSrc);
 		} else {
 			// modal.querySelector('.modal_content').innerHTML= "no trailer";
@@ -108,7 +108,7 @@ const HeroSlideItem = (props) => {
 								{Math.round(rating * 10) / 10}
 							</p>
 						</span>
-						<span className="text-white hidden  lg:py-1 lg:px-2 ms-2 rounded-md bg-yellow-800 ">
+						<span className="text-white hidden md:block lg:py-1 lg:px-2 ms-2 rounded-md bg-yellow-800 ">
 							<p className="font-body ">Rating</p>
 						</span>
 					</div>
@@ -120,11 +120,11 @@ const HeroSlideItem = (props) => {
 					</Typography>
 
 					<div>
-						<div className="md:flex items-center hidden lg:gap-2 flex-wrap md:gap-1 border  lg:mt-5 md:mt-2">
+						<div className="flex items-center  lg:gap-2 flex-wrap  lg:mt-5 mt-2">
 							{genreName.map((i, q) => {
 								return (
 									<span
-										className="border font-body text-xs  lg:py-1 lg:px-2 md:px-1.5 lg:text-base md:text-sm rounded-xl "
+										className="border font-body text-xs  lg:py-1 lg:px-2 me-1 mb-1 px-1.5 lg:text-base md:text-sm rounded-xl "
 										key={q}
 									>
 										{i}
@@ -138,7 +138,7 @@ const HeroSlideItem = (props) => {
 						</p>
 					</div>
 
-					<div className="lg:mt-5 md:mt-2">
+					<div className="lg:mt-5 mt-2">
 						<button
 							className="lg:py-3 px-2 lg:px-6 md:py-1 md:px-4 rounded-lg bg-red-500 font-[inherit] text-xl text-white"
 							onClick={setModalActive}
@@ -169,7 +169,7 @@ const Carousels = (props) => {
 	return (
 		<>
 			<Carousel
-				className=""
+				className="mt-10"
 				navigation={() => {}}
 				prevArrow={({ handlePrev }) => (
 					<button
@@ -239,7 +239,6 @@ const TrailerModal = (props) => {
 	// console.log("c",props.item.id);
 	const iframe = useRef(null);
 
-	// const videoUrl = 'https://www.youtube.com/embed/LEjhY15eCx0'
 	const onClose = () => iframe.current.setAttribute("src", "");
 
 	return (
@@ -247,8 +246,13 @@ const TrailerModal = (props) => {
 			<ModalContent onClose={onClose}>
 				<iframe
 					ref={iframe}
-					className="w-full rounded-lg xl:h-[80vh] lg:h-[500px]"
-					allow="autoplay"
+					className="w-full rounded-lg xl:h-[80vh] h-[300px] md:h-[500px]"
+					allow="fullscreen;encrypted-media;autoplay;"
+					mozallowfullscreen="mozallowfullscreen" 
+                    msallowfullscreen="msallowfullscreen" 
+                    oallowfullscreen="oallowfullscreen" 
+                    webkitallowfullscreen="webkitallowfullscreen"
+
 				></iframe>
 			</ModalContent>
 		</MyModal>

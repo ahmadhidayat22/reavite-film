@@ -2,7 +2,6 @@
 import {
     MyNav,
     Hero,
-    Popular,
     MovieList,
   
   } from '../components'

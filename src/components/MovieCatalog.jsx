@@ -32,8 +32,9 @@ const MovieCatalog = (props) => {
 			setList(response.results);
 			setTotalPage(response.total_pages);
 		};
-
+		
 		getList();
+		console.log(page,totalPage);
 
 		setTimeout(() => {
 			setLoading(false);
@@ -82,14 +83,14 @@ const MovieCatalog = (props) => {
 			// console.log(pictur);
 			return (
 				<Link to={link} key={i}>
-					<div key={i} className=" flex w-44 rounded  hover:scale-105 my-3 transition-all duration-300 h-64 flex-col">
+					<div key={i} className=" flex md:w-44 md:h-64 w-32 h-44 rounded  hover:scale-105 my-3 transition-all duration-300  flex-col">
 						{/* {loading ? (
 						null
 					) : (
 						
 						)} */}
-						<div className=" flex rounded flex-col h-full ">
-							<div className="rounded-2xl h-full  overflow-hidden bg-gray-400">
+						<div className="flex rounded flex-col h-full ">
+							<div className="rounded-xl md:rounded-2xl h-full  overflow-hidden bg-gray-400">
 								<img
 									src={`${import.meta.env.VITE_REACT_APP_BASEIMGURL}/${
 										item.poster_path
@@ -127,6 +128,7 @@ const MovieCatalog = (props) => {
 		const params = {
 			page: page + 1,
 		};
+		
 		if (searchVal === '') {
 			// console.log(searchVal);
 			if (Category ==category.movie ) {
@@ -138,24 +140,25 @@ const MovieCatalog = (props) => {
 			}
 
 		}else{
-			console.log(Category);
+			// console.log(Category);
 			response = await tmdbApi.search(Category ,searchVal, params.page);
 
 		}
 
-		console.log(response);
+		// console.log(response);
 
 		setList([...list, ...response.results]);
 		await wait(1000);
 		setPage(params.page);
 		setLoading(false);
+		
 	};
-
 	const HandleLoad = () => {
 		return (
 			<>
 				{page < totalPage ? (
 					<button
+						id="load_more"
 						className="border rounded-full my-5 text-xl py-2 px-4 hover:bg-blue-gray-200"
 						onClick={loadMore}
 					>
@@ -178,6 +181,10 @@ const MovieCatalog = (props) => {
 				if(res.results != ''){
 					
 					console.log("ada",res);
+					setPage(1);
+					
+					setTotalPage(res.total_pages)
+
 				}else{
 					console.log("kosong pok", res);
 				}
@@ -185,6 +192,7 @@ const MovieCatalog = (props) => {
 			}
 			setList(res.results);
 			// console.log(getValue);
+
 		};
 
 		return (
@@ -222,8 +230,8 @@ const MovieCatalog = (props) => {
 			</div>
 
 			<div className=" mt-2 p-5">
-				<div className="  container mx-auto  ">
-					<div className="flex flex-wrap gap-10 py-2">
+				<div className="container mx-auto  ">
+					<div className="flex  justify-center flex-wrap gap-2  md:gap-10 py-2">
 						<Card />
 					</div>
 					<div className="flex items-center justify-center mt-10 mb-16 ">

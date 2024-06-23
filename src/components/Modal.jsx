@@ -19,7 +19,7 @@ const MyModal = (props) => {
     }
 
     return(
-        <div id={props.id} className={`modal grid inset-0 w-screen h-screen place-items-center bg-black bg-opacity-50 z-[999] transition-all duration-300 ${active ? 'fixed' : 'hidden'}`} onClick={closeModal} >
+        <div id={props.id} className={`modal grid inset-0 w-screen h-screen place-items-center bg-black bg-opacity-85 z-[999] transition-all duration-300 ${active ? 'fixed' : 'hidden'}`} onClick={closeModal} >
             {props.children}
         </div>
     )
@@ -40,7 +40,7 @@ export const ModalContent = (props) => {
     
     return (
 
-        <div ref={contentRef} className='modal_content relative m-4 min-w-[80%] flex items-end flex-col-reverse rounded-lg  font-sans text-base font-light leading-relaxed text-blue-gray-500  antialiased shadow-2xl min-h-[70%] '>
+        <div ref={contentRef} className='modal_content relative m-4 min-w-[80%] flex items-end flex-col-reverse justify-end rounded-lg  font-sans text-base font-light leading-relaxed text-blue-gray-500  antialiased shadow-2xl min-h-[70%] '>
             
             {props.children}
             {/* <p>modal content</p> */}

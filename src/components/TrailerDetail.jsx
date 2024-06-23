@@ -18,7 +18,7 @@ const TrailerDetail = (props) => {
             videos.map((item) => {
                 if(item.type == "Trailer"){
                     key = item.key
-                    console.log(key);
+                    // console.log(key);
 
                 }
             });
@@ -44,24 +44,26 @@ const TrailerDetail = (props) => {
 
     const iframe = useRef(null);
     return (
-        <div className='trailer mx-20 flex flex-col mb-96'>
-            <div className='ps-4 pb-10 text-4xl font-bold '>
-                <h1>Trailer </h1>
+        <div id='trailer' className='trailer mx-8 md:mx-20  flex flex-col mb-32 md:mb-96'>
+            <div className=' pb-5 md:pb-10 text-4xl font-bold '>
+                <h1>Trailer</h1>
 
             </div>
-            <div id='trailer_body' className='w-full h-[55rem] '>
+            <div id='trailer_body' className='w-full h-[15rem] md:h-[55rem] '>
             <iframe ref={iframe} className='w-full h-full'
                     title='Youtube player'
+                    width="560" height="315"
                     allow='same-origin; fullscreen;encrypted-media;'
                     mozallowfullscreen="mozallowfullscreen" 
                     msallowfullscreen="msallowfullscreen" 
                     oallowfullscreen="oallowfullscreen" 
                     webkitallowfullscreen="webkitallowfullscreen"
-                    sandbox='allow-same-origin allow-forms allow-popups  allow-scripts allow-presentation '
-
                     src=''>
             </iframe>
             </div>
+
+            
+
         </div>
 
 

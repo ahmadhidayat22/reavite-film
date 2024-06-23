@@ -10,7 +10,6 @@ import MovieCatalog from "./MovieCatalog";
 export { 
     MyNav,
     Hero,
-    Popular,
     MovieList,
     HeroDetail,
     TrailerDetail,
