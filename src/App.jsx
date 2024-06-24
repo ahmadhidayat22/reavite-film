@@ -8,7 +8,6 @@ import { useState , useEffect } from "react";
 import {
   Home,
   Movie,
-  TvSeries ,
   Catalog,
   NotFound,
 
@@ -24,7 +23,6 @@ function App() {
         <Route path='*' element={<NotFound />}/>
         <Route path='/catalog/:category/:type' element={<Catalog />}/>
         <Route path='/:Category/:id' element={<Movie />}/>
-        <Route path='/tv-series' element={<TvSeries />}/>
       </Routes>
     </Router>
     

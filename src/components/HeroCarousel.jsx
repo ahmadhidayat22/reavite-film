@@ -140,7 +140,7 @@ const HeroSlideItem = (props) => {
 
 					<div className="lg:mt-5 mt-2">
 						<button
-							className="lg:py-3 px-2 lg:px-6 md:py-1 md:px-4 rounded-lg bg-red-500 font-[inherit] text-xl text-white"
+							className="lg:py-3 px-2 lg:px-6 md:py-1 md:px-4 rounded-lg bg-red-500 font-[inherit] text-xl text-white hover:scale-110 transition-all duration-500"
 							onClick={setModalActive}
 						>
 							watch Trailer
@@ -219,7 +219,7 @@ const Carousels = (props) => {
 						</svg>
 					</button>
 				)}
-				autoplay={false}
+				autoplay={true}
 				loop={true}
 				autoplayDelay={8000}
 			>
@@ -248,11 +248,10 @@ const TrailerModal = (props) => {
 					ref={iframe}
 					className="w-full rounded-lg xl:h-[80vh] h-[300px] md:h-[500px]"
 					allow="fullscreen;encrypted-media;autoplay;"
-					mozallowfullscreen="mozallowfullscreen" 
-                    msallowfullscreen="msallowfullscreen" 
-                    oallowfullscreen="oallowfullscreen" 
-                    webkitallowfullscreen="webkitallowfullscreen"
-
+					mozallowfullscreen="mozallowfullscreen"
+					msallowfullscreen="msallowfullscreen"
+					oallowfullscreen="oallowfullscreen"
+					webkitallowfullscreen="webkitallowfullscreen"
 				></iframe>
 			</ModalContent>
 		</MyModal>

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MovieCatalog, MyNav, Search } from "../components";
+import { MovieCatalog, MyNav, Footer } from "../components";
 import { useParams } from "react-router-dom";
 
 function Catalog() {
@@ -18,6 +18,8 @@ function Catalog() {
                
 
             </div>
+
+            <Footer />
 		</div>
 	);
 }

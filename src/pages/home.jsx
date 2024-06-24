@@ -2,6 +2,7 @@ import {
   MyNav,
   Hero,
   MovieList,
+  Footer
 
 } from '../components'
 
@@ -21,7 +22,7 @@ const Home = () => {
         <MovieList type={movieType.upcoming} category={category.movie} title="Upcoming"/>
         {/* <MovieList type={movieType.top_rated} title="Top Rated"/> */}
       </section>      
-     
+     <Footer />
     </div>
 
 

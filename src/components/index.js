@@ -6,6 +6,7 @@ import HeroDetail from './HeroDetail';
 import TrailerDetail from "./TrailerDetail";
 import Search from "./Search";
 import MovieCatalog from "./MovieCatalog";
+import Footer from "./Footer";
 
 export { 
     MyNav,
@@ -15,6 +16,8 @@ export {
     TrailerDetail,
     Search,
     MovieCatalog,
+    Footer,
+    
 
     
 
