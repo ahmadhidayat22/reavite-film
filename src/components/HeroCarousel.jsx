@@ -12,9 +12,14 @@ import tmdbApi, { category, movieType, tvType } from "../server/api";
 
 import { genres } from "../constant";
 
+function classNames(...classes) {
+	return classes.filter(Boolean).join(" ");
+}
+
 const HeroSlideItem = (props) => {
 	const item = props.movie;
-
+	const imgUrl = import.meta.env.VITE_REACT_APP_HEROIMGURL;
+	const [image, setImage] = useState([]);
 	let rating = item.vote_average;
 	const remainingStars = rating % 1 ? true : false;
 
@@ -83,15 +88,32 @@ const HeroSlideItem = (props) => {
 
 	getGenres();
 
+	useEffect(() => {
+		setImage(`${imgUrl}${item.backdrop_path}`)
+
+	}, [])
+
+	console.log(image);
+	// const images = `${import.meta.env.VITE_REACT_APP_HEROIMGURL}${item.backdrop_path}`
+	// console.log(images);	
+
 	return (
-		<div className="relative h-[80vh] lg:h-full w-full " key={item.id}>
+		<div 
+		className="relative h-[80vh] lg:h-full w-full " 
+		key={item.id}
+		
+		>
+			
+			
 			<img
 				src={`${import.meta.env.VITE_REACT_APP_HEROIMGURL}/${
 					item.backdrop_path
 				}`}
-				alt="image 1"
-				className="h-full w-full object-cover  "
+				alt="hero image"
+				className="h-full object-cover "
+				loading="eager"
 			/>
+			
 			<div className="absolute inset-0 flex h-full w-full  md:bg-gradient-to-r bg-gradient-to-t from-10%  from-black  overflow-hidden">
 				<div className="xl:w-4/6 lg:w-[50%]  w-[80%] h-[70%] my-auto flex items-start flex-col animate-fade xl:gap-3 gap-0  justify-center  md:mx-14 xl:mx-28 lg:mx-20 px-3 mx-auto  md:w-[55%]">
 					<Typography
@@ -108,7 +130,7 @@ const HeroSlideItem = (props) => {
 								{Math.round(rating * 10) / 10}
 							</p>
 						</span>
-						<span className="text-white hidden md:block lg:py-1 lg:px-2 ms-2 rounded-md bg-yellow-800 ">
+						<span className="text-white hidden md:block lg:py-1 lg:px-2 ms-2 rounded-md bg-[#4B5663] ">
 							<p className="font-body ">Rating</p>
 						</span>
 					</div>
@@ -140,7 +162,7 @@ const HeroSlideItem = (props) => {
 
 					<div className="lg:mt-5 mt-2">
 						<button
-							className="lg:py-3 px-2 lg:px-6 md:py-1 md:px-4 rounded-lg bg-red-500 font-[inherit] text-xl text-white hover:scale-110 transition-all duration-500"
+							className="lg:py-3 px-2 lg:px-6 md:py-1 md:px-4 rounded-lg bg-[#AD110B] font-[inherit] text-xl text-white hover:scale-110 transition-all duration-500"
 							onClick={setModalActive}
 						>
 							watch Trailer
@@ -173,6 +195,7 @@ const Carousels = (props) => {
 				navigation={() => {}}
 				prevArrow={({ handlePrev }) => (
 					<button
+						aria-label="prev"
 						variant="text"
 						color="white"
 						size="lg"
@@ -197,6 +220,8 @@ const Carousels = (props) => {
 				)}
 				nextArrow={({ handleNext }) => (
 					<button
+						aria-label="next"
+						id="next"
 						variant="text"
 						color="white"
 						size="lg"
@@ -219,7 +244,7 @@ const Carousels = (props) => {
 						</svg>
 					</button>
 				)}
-				autoplay={true}
+				autoplay={false}
 				loop={true}
 				autoplayDelay={8000}
 			>

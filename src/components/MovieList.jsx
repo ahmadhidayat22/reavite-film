@@ -32,7 +32,7 @@ const MovieList = (props) => {
 			}
 
 			setMovies(response.results);
-			console.log(Movies);
+			// console.log(Movies);
 		};
 
 		getList();
@@ -44,7 +44,7 @@ const MovieList = (props) => {
 			// console.log(movie);
 			const shortTitle = title;
 			const link = "/" + category[props.category] + "/" + movie.id;
-
+			const image = `${import.meta.env.VITE_REACT_APP_BASEIMGURL}/${movie.poster_path}`
 			return (
 				// eslint-disable-next-line react/jsx-key
 				<Link to={link} key={i} reloadDocument={true}>
@@ -52,22 +52,32 @@ const MovieList = (props) => {
 						key={i}
 						className="group cursor-pointer hover:scale-110  transition-all relative overflow-hidden ease-in-out duration-300 mx-3"
 					>
-						<div className="w-32 h-44 md:w-44 md:h-64 max-w-xs overflow-hidden rounded-lg  bg-red-400  ease-in-out">
-							<img
-								src={`${import.meta.env.VITE_REACT_APP_BASEIMGURL}/${
-									movie.poster_path
-								}`}
+						<div 
+						className="w-32 h-44 md:w-44 md:h-64 max-w-xs overflow-hidden rounded-lg  bg-red-400  ease-in-out"
+						
+						>
+							<div 
+							className="h-full bg-center bg-cover"
+							style={{ 
+								backgroundImage : `url(${image})`,
+								
+							 }}
+							>
+
+							</div>
+							{/* <img
+								src={`${image}`}
 								alt="poster image"
-								className="w-full h-full"
-							/>
+								className="min:h-full "
+							/> */}
 						</div>
 
 						<div className="w-full  *:translate-y-5 *:group-hover:translate-y-0 *:opacity-0 *:group-hover:opacity-100 *:duration-300 group-hover:h-24 md:group-hover:h-32 px-3 py-1 group-hover:bg-gradient-to-t  group-hover:from-black  text-white items-center flex gap-2 absolute bottom-0 rounded-b-lg ">
 							<div className="w-40 text-lg md:text-xl  text-wrap">
-								<h3 className="font-bold ">{shortTitle}</h3>
+								<h1 className="font-bold text-lg ">{shortTitle}</h1>
 							</div>
-							<div className="">
-								<button>
+							<div className="" id={`${type}.play${i}`}>
+								<button aria-labelledby={`${type}play${i}`}>
 									<img src={play_button_red} alt="" className="w-10" />
 								</button>
 							</div>
@@ -82,7 +92,7 @@ const MovieList = (props) => {
 		<>
 			{available ? (
 				<div
-					id="popular"
+					id={props.type}
 					className="flex flex-col  m-auto p-auto my-10 mx-5 md:mx-16"
 				>
 					<div className="flex justify-between ">
