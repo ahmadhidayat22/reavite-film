@@ -6,6 +6,7 @@ import HeroDetail from './HeroDetail';
 import TrailerDetail from "./TrailerDetail";
 import Search from "./Search";
 import MovieCatalog from "./MovieCatalog";
+import VideoPlayer from "./VideoPlayer";
 import Footer from "./Footer";
 
 export { 
@@ -17,6 +18,7 @@ export {
     Search,
     MovieCatalog,
     Footer,
+    VideoPlayer
     
 
     

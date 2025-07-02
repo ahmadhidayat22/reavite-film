@@ -4,6 +4,7 @@ import {
 	TrailerDetail,
 	MovieList,
 	Footer,
+	VideoPlayer
 } from "../components";
 import tmdbApi, { movieType, category } from "../server/api";
 import { useParams } from "react-router";
@@ -12,15 +13,6 @@ import React, { useEffect, useState } from "react";
 
 const Movie = () => {
 	const { Category, id } = useParams();
-	// const [movieDetail, setMovieDetail] = useState([]);
-
-	// useEffect(() => {
-	//     tmdbApi.detail(Category,id).then((res) => {
-	//       setMovieDetail(res);
-	//     })
-
-	// }, [])
-
 	return (
 		<div className="snap-y snap-mandatory overflow-y-scroll h-screen">
 			<div>
@@ -30,9 +22,13 @@ const Movie = () => {
 				<HeroDetail category={category[Category]} id={id} />
 			</div>
 
-			<div className="my-5  snap-always snap-center">
-				<TrailerDetail category={category[Category]} id={id} />
+			<div className="sm:my-5   snap-always snap-center">
+				<VideoPlayer category={category[Category]} id={id}/>
 			</div>
+			{/* <div className="my-5  snap-always snap-center">
+				<TrailerDetail category={category[Category]} id={id} />
+			</div> */}
+
 			<div className="snap-always snap-center">
 				<MovieList
 					type="similar"

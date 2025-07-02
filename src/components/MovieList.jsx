@@ -32,7 +32,7 @@ const MovieList = (props) => {
 			}
 
 			setMovies(response.results);
-			console.log(Movies);
+			// console.log(Movies);
 		};
 
 		getList();

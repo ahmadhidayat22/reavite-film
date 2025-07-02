@@ -19,6 +19,7 @@ export const tvType = {
     on_the_air: 'on_the_air'
 }
 
+
 const tmdbApi = {
     getMoviesList: async(type, page) => {
         let url = ''
@@ -112,3 +113,14 @@ export default tmdbApi;
 //     const search =await axios.get(`${import.meta.env.VITE_REACT_APP_BASEURL}/search/movie?query=${q}&page=1&api_key=${import.meta.env.VITE_REACT_APP_APIKEY}`)
 //     return search.data
 // }
+
+const domain_vidsrc = ["vidsrc.net", "vidsrc.in", "vidsrc.pm", "vidsrc.xyz", ]
+
+export const vidsrcApi = {
+    embed : async (cat, movieId) => {
+        const url = `https://${domain_vidsrc[0]}/embed/${cat}?tmdb=${movieId}&ds_lang=id`
+        // const response = await axios.get(url);
+
+        return url
+    }
+}

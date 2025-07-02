@@ -20,7 +20,8 @@ const HeroDetail = (props) => {
 				});
 			}
 		};
-
+		// console.log(movieDetail, props);
+		
 		getMovieDetail();
 	}, [props.category, props.id]);
 
@@ -61,7 +62,7 @@ const HeroDetail = (props) => {
 						</div>
 
 						<div className=" md:w-3/6  relative  w-full flex flex-col gap-3 ">
-							<h1 className="font-extrabold text-4xl md:text-5xl ">{movieDetail.title}</h1>
+							<h1 className="font-extrabold text-4xl md:text-5xl ">{movieDetail.title || movieDetail.name || movieDetail.original_name}</h1>
 							<div className="flex gap-2 pt-2">{<GetGenre />}</div>
 
 							<p>{movieDetail.overview}</p>

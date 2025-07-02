@@ -2,9 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import tmdbApi from '../server/api';
 
 const TrailerDetail = (props) => {
-    // console.log(props);
-
-    const [videos, setVideos] = useState([]);
+   const [videos, setVideos] = useState([]);
 
     
     useEffect(() => {
@@ -49,10 +47,10 @@ const TrailerDetail = (props) => {
                 <h1>Trailer</h1>
 
             </div>
-            <div id='trailer_body' className='w-full h-[15rem] md:h-[55rem] '>
+            <div id='trailer_body' className='w-[60rem] h-[13rem] md:h-[45rem] self-center'>
             <iframe ref={iframe} className='w-full h-full'
                     title='Youtube player'
-                    width="560" height="315"
+                    width="460" height="215"
                     allow='same-origin; fullscreen;encrypted-media;'
                     mozallowfullscreen="mozallowfullscreen" 
                     msallowfullscreen="msallowfullscreen" 
