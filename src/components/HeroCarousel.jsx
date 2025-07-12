@@ -18,8 +18,8 @@ const HeroSlideItem = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
   const item = props.movie;
-	// console.log(item);
-	
+  // console.log(item);
+
   // 2. Gunakan useMemo sebelum useEffect
   const genreName = useMemo(() => {
     return item.genre_ids
@@ -84,29 +84,26 @@ const HeroSlideItem = (props) => {
   return (
     <div className="relative h-[80vh] lg:h-full w-full" key={item.id}>
       {!imageLoaded && <HeroSkeleton />}
-	 
+
       <img
         src={`https://image.tmdb.org/t/p/w1280${item.backdrop_path}`}
         alt={item.title}
         className={`h-full w-full object-cover ${
-			imageLoaded ? "block" : "hidden"
-			}`}
-			loading="lazy"
-			decoding="async"
-			onLoad={() => setImageLoaded(true)}
-			/>
-			
+          imageLoaded ? "block" : "hidden"
+        }`}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setImageLoaded(true)}
+      />
+
       <div className="absolute inset-0 flex h-full w-full  md:bg-gradient-to-r bg-gradient-to-t from-10%  from-black  overflow-hidden">
         <div className="xl:w-4/6 lg:w-[50%]  w-[80%] h-[70%] my-auto flex items-start flex-col animate-fade xl:gap-3 gap-0  justify-center  md:mx-14 xl:mx-28 lg:mx-20 px-3 mx-auto  md:w-[55%]">
           <Typography
             variant="h1"
             color="white"
             className="lg:mb-4 md:mb-1  font-[inherit] text-4xl lg:text-5xl xl:text-7xl"
-			
-          ><a href={`/movie/${item.id}`}>
-            {item.title}
-
-		  </a>
+          >
+            <a href={`/movie/${item.id}`}>{item.title}</a>
           </Typography>
           <div className="md:flex  justify-start items-center hidden gap-1">
             {starItem}
@@ -142,14 +139,18 @@ const HeroSlideItem = (props) => {
               {item.release_date}{" "}
             </p>
           </div>
-
-          <div className="lg:mt-5 mt-2">
-            <button
-              className="lg:py-3 px-2 lg:px-6 md:py-1 md:px-4 rounded-lg bg-red-500 font-[inherit] text-xl text-white hover:scale-110 transition-all duration-500"
-              onClick={setModalActive}
-            >
-              watch Trailer
-            </button>
+          <div className="flex flex-row gap-4">
+            <div className="lg:mt-5 mt-2">
+              <button
+                className="lg:py-3 px-2 lg:px-6 md:py-1 md:px-4 rounded-lg bg-red-500 font-[inherit] text-xl text-white hover:scale-110 transition-all duration-500"
+                onClick={setModalActive}
+              >
+                watch Trailer
+              </button>
+            </div>
+            <div className="lg:mt-5 mt-2 rounded-lg border flex flex-col justify-center border-red-500 hover:bg-red-500 hover:scale-110 transition-all duration-500">
+              <a href={`/movie/${item.id}`} className="text-xl lg:py-3 px-2 lg:px-6 md:py-1 md:px-4 ">Watch Movie</a>
+            </div>
           </div>
         </div>
         <div className="flex items-center xl:ms-16 md:ms-14  lg:ms-28 ">
@@ -240,7 +241,6 @@ const HeroSlideItem = (props) => {
 //   );
 // };
 
-
 const Carousels = memo(({ movies }) => {
   const [visibleItems, setVisibleItems] = useState(5); // Batasi jumlah item yang dirender
 
@@ -314,28 +314,28 @@ const Carousels = memo(({ movies }) => {
   );
 });
 const TrailerModal = (props) => {
-	// console.log("c",props.item.id);
-	const iframe = useRef(null);
-  
-	const onClose = () => iframe.current.setAttribute("src", "");
-  
-	return (
-	  <MyModal active={false} id={`modal_${props.item.id}`}>
-		<ModalContent onClose={onClose}>
-		  <iframe
-			ref={iframe}
-			className="w-full rounded-lg xl:h-[80vh] h-[300px] md:h-[500px]"
-			allow="fullscreen;encrypted-media;autoplay;"
-			loading="lazy"
-			mozallowfullscreen="mozallowfullscreen"
-			msallowfullscreen="msallowfullscreen"
-			oallowfullscreen="oallowfullscreen"
-			webkitallowfullscreen="webkitallowfullscreen"
-		  ></iframe>
-		</ModalContent>
-	  </MyModal>
-	);
-  };
+  // console.log("c",props.item.id);
+  const iframe = useRef(null);
+
+  const onClose = () => iframe.current.setAttribute("src", "");
+
+  return (
+    <MyModal active={false} id={`modal_${props.item.id}`}>
+      <ModalContent onClose={onClose}>
+        <iframe
+          ref={iframe}
+          className="w-full rounded-lg xl:h-[80vh] h-[300px] md:h-[500px]"
+          allow="fullscreen;encrypted-media;autoplay;"
+          loading="lazy"
+          mozallowfullscreen="mozallowfullscreen"
+          msallowfullscreen="msallowfullscreen"
+          oallowfullscreen="oallowfullscreen"
+          webkitallowfullscreen="webkitallowfullscreen"
+        ></iframe>
+      </ModalContent>
+    </MyModal>
+  );
+};
 
 // const TrailerModal = memo((props) => {
 //   const iframe = useRef(null);
@@ -359,12 +359,12 @@ const TrailerModal = (props) => {
 //         //setVideoKey(null);
 //       }
 //     });
-	
+
 //     observer.observe(modal, { attributes: true });
 //     return () => observer.disconnect();
 //   }, [props.item.id]);
 //   console.log(videoKey);
-  
+
 //   const onClose = () => {
 //     iframe.current?.setAttribute("src", "");
 //     setVideoKey(null);
